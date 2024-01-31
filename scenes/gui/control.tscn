@@ -50,6 +50,7 @@ scale = Vector2(-1, 1)
 texture = ExtResource("2_wgnti")
 
 [node name="LeftScore" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 1
 offset_left = 500.0
 offset_right = 507.0
@@ -62,6 +63,7 @@ text = "0
 "
 
 [node name="RightScore" type="Label" parent="."]
+texture_filter = 1
 offset_left = 780.0
 offset_right = 787.0
 offset_bottom = 24.0

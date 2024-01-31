@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7r6vrb3wqh4x"]
+
+[ext_resource type="Texture2D" uid="uid://cvvtkg2qujtr6" path="res://scenes/ball/Ball.png" id="1_cumpo"]
+[ext_resource type="Script" path="res://scenes/ball/ball.gd" id="1_j6v8m"]
+[ext_resource type="Script" path="res://scenes/ball/Trail2D.gd" id="3_chkig"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e135r"]
+size = Vector2(49, 49)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3nogd"]
+radius = 23.0217
+
+[sub_resource type="Curve" id="Curve_wmdr7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Ball" type="CharacterBody2D" groups=["ball"]]
+script = ExtResource("1_j6v8m")
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_e135r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_3nogd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_cumpo")
+
+[node name="Trail2D" type="Line2D" parent="."]
+width_curve = SubResource("Curve_wmdr7")
+default_color = Color(0.776471, 0.117647, 0.584314, 1)
+script = ExtResource("3_chkig")

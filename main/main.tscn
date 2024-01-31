@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://l67ytkop5p1u"]
+
+[ext_resource type="PackedScene" uid="uid://chdf21rrjohmg" path="res://scenes/player/player.tscn" id="1_8sk85"]
+[ext_resource type="PackedScene" uid="uid://dh7mmcbx0ixss" path="res://scenes/gui/control.tscn" id="2_5cgf2"]
+[ext_resource type="PackedScene" uid="uid://c4a5tk006g81t" path="res://scenes/enemy/enemy.tscn" id="2_efat4"]
+[ext_resource type="PackedScene" uid="uid://c7r6vrb3wqh4x" path="res://scenes/ball/ball.tscn" id="3_yb3h3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i62pf"]
+size = Vector2(1280, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61jcl"]
+size = Vector2(122, 720.75)
+
+[node name="Main" type="Node"]
+
+[node name="GUI" type="Node" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="GUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+
+[node name="Control" parent="GUI" instance=ExtResource("2_5cgf2")]
+
+[node name="Borders" type="Node" parent="."]
+
+[node name="GeneralBorders" type="StaticBody2D" parent="Borders"]
+collision_mask = 0
+
+[node name="Top" type="CollisionShape2D" parent="Borders/GeneralBorders"]
+position = Vector2(640, -23)
+shape = SubResource("RectangleShape2D_i62pf")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders/GeneralBorders"]
+position = Vector2(639, 790)
+shape = SubResource("RectangleShape2D_i62pf")
+
+[node name="RightBorder" type="StaticBody2D" parent="Borders"]
+collision_mask = 0
+
+[node name="Right" type="CollisionShape2D" parent="Borders/RightBorder"]
+position = Vector2(1342, 360.375)
+shape = SubResource("RectangleShape2D_61jcl")
+
+[node name="LeftBorder" type="StaticBody2D" parent="Borders"]
+collision_mask = 0
+
+[node name="Left" type="CollisionShape2D" parent="Borders/LeftBorder"]
+position = Vector2(-62, 360.25)
+shape = SubResource("RectangleShape2D_61jcl")
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="Ball" parent="Objects" instance=ExtResource("3_yb3h3")]
+position = Vector2(753, 368)
+collision_layer = 4
+collision_mask = 3
+
+[node name="Enemy" parent="Objects" instance=ExtResource("2_efat4")]
+position = Vector2(474, 290)
+collision_layer = 2
+
+[node name="Player" parent="Objects" instance=ExtResource("1_8sk85")]
+position = Vector2(583, 296)
+collision_layer = 2
